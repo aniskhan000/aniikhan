@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@_anisurrahman0 - TikTok Profile</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            display: flex;
+            gap: 40px;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .profile-picture {
+            width: 300px;
+            flex-shrink: 0;
+            position: relative;
+            perspective: 1000px;
+            z-index: 1;
+        }
+
+        .picture-frame {
+            width: 300px;
+            height: 300px;
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            background: #2d2d2d;
+            transform-style: preserve-3d;
+            transform: rotateY(-10deg) rotateX(10deg);
+            transition: transform 0.5s ease;
+            animation: float 6s ease-in-out infinite;
+            box-shadow: 0 0 50px rgba(254, 44, 85, 0.3);
+        }
+
+        .colorful-background {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: 
+                linear-gradient(45deg, #ff0f7b, #f89b29 30%, #4eadff 60%, #4ef8ff 70%, #ff0f7b);
+            background-size: 300% 300%;
+            filter: blur(30px);
+            opacity: 0.8;
+            z-index: -2;
+            animation: gradientBG 15s ease infinite;
+        }
+
+        .sparkles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 20%, white 1px, transparent 1px),
+                radial-gradient(circle at 80% 40%, white 1px, transparent 1px),
+                radial-gradient(circle at 40% 60%, white 1px, transparent 1px),
+                radial-gradient(circle at 70% 80%, white 1px, transparent 1px);
+            background-size: 100% 100%;
+            opacity: 0.3;
+            animation: sparkleMove 10s linear infinite;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes sparkleMove {
+            0% { transform: translateY(0) rotate(0deg); }
+            100% { transform: translateY(-100px) rotate(360deg); }
+        }
+
+        .background-pattern {
+            position: absolute;
+            width: 150%;
+            height: 150%;
+            top: -25%;
+            left: -25%;
+            background: 
+                radial-gradient(circle at 30% 30%, rgba(255, 45, 85, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 70% 70%, rgba(37, 244, 238, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(249, 214, 46, 0.3) 0%, transparent 50%),
+                linear-gradient(45deg, rgba(255, 45, 85, 0.2) 0%, rgba(37, 244, 238, 0.2) 100%);
+            filter: blur(10px);
+            z-index: -1;
+            animation: patternMove 20s linear infinite;
+            transform-origin: center;
+        }
+
+        .glow-effect {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, 
+                rgba(255, 255, 255, 0.8) 0%,
+                rgba(255, 255, 255, 0.1) 30%,
+                transparent 70%);
+            mix-blend-mode: overlay;
+            animation: glowPulse 4s ease-in-out infinite;
+        }
+
+        @keyframes glowPulse {
+            0% { opacity: 0.5; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.1); }
+            100% { opacity: 0.5; transform: scale(1); }
+        }
+
+        #profile-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            position: relative;
+            z-index: 1;
+            border-radius: 20px;
+        }
+
+        .background-effects {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) translateZ(-50px);
+            background: radial-gradient(circle at center,
+                rgba(254, 44, 85, 0.2),
+                rgba(37, 244, 238, 0.2),
+                transparent 70%);
+            filter: blur(20px);
+            animation: pulse 4s ease infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: translate(-50%, -50%) translateZ(-50px) scale(1); }
+            50% { transform: translate(-50%, -50%) translateZ(-50px) scale(1.1); }
+            100% { transform: translate(-50%, -50%) translateZ(-50px) scale(1); }
+        }
+
+        .upload-button {
+            background: linear-gradient(45deg, #fe2c55, #25f4ee);
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 40px;
+            width: 100%;
+            position: relative;
+            z-index: 2;
+            transition: all 0.3s ease;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+        }
+
+        .upload-button:hover {
+            transform: scale(1.05) translateY(-2px);
+            box-shadow: 0 10px 20px rgba(254, 44, 85, 0.3);
+        }
+
+        .profile-info {
+            flex: 1;
+        }
+
+        .username {
+            font-size: 2.5rem;
+            color: #fe2c55;
+            margin-bottom: 1rem;
+        }
+
+        .bio {
+            color: #888;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .stats {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 1.5rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .stat {
+            text-align: center;
+            position: relative;
+        }
+
+        .stat::after {
+            content: '';
+            position: absolute;
+            right: -1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 1px;
+            height: 70%;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .stat:last-child::after {
+            display: none;
+        }
+
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #fe2c55;
+            text-shadow: 0 0 10px rgba(254, 44, 85, 0.3);
+        }
+
+        .stat-label {
+            color: #888;
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+
+        .tiktok-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(45deg, #fe2c55, #25f4ee);
+            color: white;
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(254, 44, 85, 0.3);
+        }
+
+        .tiktok-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 255, 255, 0.2),
+                transparent
+            );
+            transition: 0.5s;
+        }
+
+        .tiktok-link:hover::before {
+            left: 100%;
+        }
+
+        .tiktok-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(254, 44, 85, 0.4);
+        }
+
+        .tiktok-icon {
+            width: 24px;
+            height: 24px;
+            fill: white;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-3px); }
+        }
+
+        .tiktok-link:hover .tiktok-icon {
+            animation: bounce 1s ease infinite;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .profile-picture {
+                margin: 0 auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="profile-picture">
+            <div class="colorful-background"></div>
+            <div class="background-pattern"></div>
+            <div class="sparkles"></div>
+            <!-- This div.picture-frame serves as a 3D-styled container for the profile image. 
+                 It includes a glow effect for visual enhancement, adding depth and an animated float effect.
+                 The image inside displays a placeholder profile picture. -->
+            <div class="picture-frame">
+                <div class="glow-effect"></div>
+                <img id="profile-image" src="https://placehold.co/300x300/fe2c55/ffffff?text=@_anisurrahman0" alt="Profile Picture">
+            </div>
+            <input type="file" id="file-input" accept="image/*" onchange="loadImage(this)">
+            <label for="file-input" class="upload-button">Choose Profile Picture</label>
+        </div>
+        <div class="profile-info">
+            <h1 class="username">@_anisurrahman0</h1>
+            <p class="bio">Welcome to my TikTok profile! 🎵✨</p>
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-number">9</div>
+                    <div class="stat-label">Following</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">339K</div>
+                    <div class="stat-label">Followers</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">26M</div>
+                    <div class="stat-label">Likes</div>
+                </div>
+            </div>
+            <a href="https://www.tiktok.com/@_anisurrahman0" target="_blank" class="tiktok-link">
+                <svg class="tiktok-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill="currentColor" d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64 2.93 2.93 0 01.88.13V9.4a6.84 6.84 0 00-1-.05A6.33 6.33 0 005 20.1a6.34 6.34 0 0011.14-4.02V9.41a8.16 8.16 0 004.65 1.46V7.43a4.85 4.85 0 01-1.2-.74z"/>
+                </svg>
+                Follow me on TikTok
+            </a>
+        </div>
+    </div>
+
+    <script>
+        function loadImage(input) {
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                
+                reader.onload = function(e) {
+                    const image = document.getElementById('profile-image');
+                    image.src = e.target.result;
+                };
+                
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
+</body>
+</html>
